@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sergio & Dayana — Nuestra boda</title>
+<style>
+  * { box-sizing:border-box; }
+  html,body { margin:0; min-height:100%; background:#eee2d5; font-family:Georgia,serif; }
+  body { display:flex; justify-content:center; align-items:center; padding:14px; overflow-x:hidden; }
+  .wrap { width:min(100%, 520px); position:relative; }
+  .card { position:relative; border-radius:24px; overflow:hidden; box-shadow:0 16px 45px rgba(80,55,35,.22); animation:appear 1.4s ease both; background:#f7efe7; }
+  .card img { width:100%; display:block; animation:breath 8s ease-in-out infinite; }
+  .veil { position:absolute; inset:0; pointer-events:none;
+           background:linear-gradient(115deg,transparent 0 35%,rgba(255,255,255,.23) 45%,transparent 56%);
+           transform:translateX(-120%); animation:shine 5.5s ease-in-out 1.2s infinite; }
+  .buttons { position:absolute; left:7%; right:7%; bottom:7.2%; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .btn { display:flex; align-items:center; justify-content:center; min-height:54px; border-radius:18px;
+          color:white; text-decoration:none; font-weight:700; font-size:15px; letter-spacing:.2px;
+          background:rgba(142,103,74,.88); border:1px solid rgba(255,255,255,.75);
+          box-shadow:0 8px 20px rgba(70,45,30,.22); backdrop-filter:blur(4px);
+          transition:transform .2s ease, box-shadow .2s ease; }
+  .btn:hover,.btn:active { transform:translateY(-2px) scale(1.015); box-shadow:0 12px 24px rgba(70,45,30,.28); }
+  .music { position:fixed; right:16px; bottom:16px; width:48px; height:48px; border:0; border-radius:50%;
+            background:#8e674a; color:#fff; font-size:21px; box-shadow:0 8px 20px rgba(70,45,30,.28); cursor:pointer; }
+  .hint { text-align:center; color:#6c5140; font-size:12px; margin:10px 0 0; }
+  @keyframes appear { from{opacity:0; transform:translateY(18px) scale(.98)} to{opacity:1; transform:none} }
+  @keyframes breath { 0%,100%{transform:scale(1)} 50%{transform:scale(1.012)} }
+  @keyframes shine { 0%{transform:translateX(-120%)} 35%,100%{transform:translateX(120%)} }
+  @media(max-width:420px) { .buttons{gap:8px} .btn{font-size:13px; min-height:50px} }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" aria-label="Invitación de boda de Sergio y Dayana">
+      <img src="invitacion.png" alt="Invitación de boda Sergio y Dayana">
+      <div class="veil"></div>
+      <div class="buttons">
+        <a class="btn" href="https://maps.app.goo.gl/LVL7TfN4ixmPp3qa7" target="_blank" rel="noopener">📍 Ver ubicación</a>
+        <a class="btn" href="https://wa.me/573124742801?text=Hola%20Sergio%20y%20Dayana%20%F0%9F%92%8D%20Confirmo%20mi%20asistencia%20a%20su%20boda%20del%2014%20de%20noviembre%20de%202026.%20%C2%A1Nos%20vemos%21%20%F0%9F%A4%8D" target="_blank" rel="noopener">💌 Confirmar asistencia</a>
+      </div>
+    </section>
+    <p class="hint">Toca el botón de música para escuchar la melodía romántica.</p>
+  </main>
+
+  <audio id="music" src="musica.mp3" loop preload="auto"></audio>
+  <button class="music" id="musicBtn" aria-label="Reproducir música">♪</button>
+<script>
+const music = document.getElementById('music');
+const btn = document.getElementById('musicBtn');
+btn.addEventListener('click', async () => {
+  if (music.paused) { await music.play(); btn.textContent='❚❚'; }
+  else { music.pause(); btn.textContent='♪'; }
+});
+</script>
+</body>
+</html>
